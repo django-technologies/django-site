@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title>Django Technologies logomark</title>
+  <desc>Three ascending rounded columns in grayscale with subtle inner arches at the base.</desc>
+<rect x="38" y="100" width="44" height="120" rx="22" ry="22" fill="#AEB3B9"/>
+  <clipPath id="clip0">
+    <rect x="38" y="100" width="44" height="120" rx="22" ry="22"/>
+  </clipPath>
+  <g clip-path="url(#clip0)">
+    <ellipse cx="59.50" cy="211.00" rx="18.50" ry="45.00" fill="#FFFFFF" opacity="0.22"/>
+  </g>
+<rect x="106" y="50" width="44" height="170" rx="22" ry="22" fill="#7A8088"/>
+  <clipPath id="clip1">
+    <rect x="106" y="50" width="44" height="170" rx="22" ry="22"/>
+  </clipPath>
+  <g clip-path="url(#clip1)">
+    <ellipse cx="127.50" cy="207.00" rx="18.50" ry="64.00" fill="#FFFFFF" opacity="0.22"/>
+  </g>
+<rect x="174" y="0" width="44" height="220" rx="22" ry="22" fill="#3E444B"/>
+  <clipPath id="clip2">
+    <rect x="174" y="0" width="44" height="220" rx="22" ry="22"/>
+  </clipPath>
+  <g clip-path="url(#clip2)">
+    <ellipse cx="195.50" cy="203.00" rx="18.50" ry="83.00" fill="#FFFFFF" opacity="0.22"/>
+  </g>
+</svg>

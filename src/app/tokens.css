@@ -1,0 +1,22 @@
+:root {
+  --neutral-0: #FFFFFE; /* bg */
+  --neutral-1: #D3D3D2;
+  --neutral-2: #A1A0A0;
+  --neutral-3: #222021;
+  --neutral-4: #1B191A;
+  --neutral-5: #111418; /* texto escuro forte */ 
+  --brand-black: #111418;
+  --brand-black-600: #0D1013; /* hover */
+  --brand-black-700: #0A0C0F; /* teal */
+
+  --color-bg: var(--neutral-0);
+  --color-surface: var(--neutral-1);
+  --color-text: var(--neutral-5);
+  --color-muted: var(--neutral-3);
+  --color-accent: var(--accent);
+
+  --radius: 16px;
+  --space-1: 8px; --space-2: 16px; --space-3: 24px;
+  --space-4: 32px; --space-5: 40px; --space-6: 64px;
+  --maxw-copy: 72ch;
+}

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title">
+  <title>Django Technologies logomark</title>
+  <defs>
+    <linearGradient id="g0" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9B9EA3"/>
+      <stop offset="1" stop-color="#C9CCD0"/>
+    </linearGradient>
+    <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#70747A"/>
+      <stop offset="1" stop-color="#A8ABB0"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3F4349"/>
+      <stop offset="1" stop-color="#8B9096"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(36,24)">
+    <path d="M0,160 a16,16 0 0 0 16,16 h16 a16,16 0 0 0 16,-16 V48 a16,16 0 0 0 -16,-16 H16 A16,16 0 0 0 0,48z" fill="url(#g0)"/>
+    <path d="M64,160 a16,16 0 0 0 16,16 h16 a16,16 0 0 0 16,-16 V24 a16,16 0 0 0 -16,-16 H80 A16,16 0 0 0 64,24z" fill="url(#g1)"/>
+    <path d="M128,160 a16,16 0 0 0 16,16 h16 a16,16 0 0 0 16,-16 V0 a16,16 0 0 0 -16,-16 H144 A16,16 0 0 0 128,0z" fill="url(#g2)"/>
+    <path d="M16,128 a24,24 0 1 0 48,0 a24,24 0 1 0 -48,0 z" fill="#FFFFFF" opacity="0.36" transform="translate(-8,0) scale(0.5,0.35) translate(16,190)"/>
+    <path d="M16,128 a24,24 0 1 0 48,0 a24,24 0 1 0 -48,0 z" fill="#FFFFFF" opacity="0.28" transform="translate(56,-24) scale(0.7,0.45) translate(16,190)"/>
+    <path d="M16,128 a24,24 0 1 0 48,0 a24,24 0 1 0 -48,0 z" fill="#FFFFFF" opacity="0.22" transform="translate(120,-48) scale(0.9,0.55) translate(16,190)"/>
+  </g>
+</svg>
