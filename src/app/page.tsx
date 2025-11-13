@@ -14,7 +14,7 @@ export default function Home() {
           </h1>
 
           <p className="mt-5 max-w-[60ch] text-lg text-[var(--color-muted)]">
-            Utilizamos métodos matemáticos e estatísticos, para desenvolver e executar estratégias sistemáticas
+            Utilizamos métodos matemáticos e estatísticos para desenvolver e executar estratégias sistemáticas
             de investimento.
           </p>
 
