@@ -18,7 +18,9 @@ export default function Contact() {
             <div>
               <h1 className="text-3xl lg:text-4xl font-medium">Contato</h1>
               <p className="mt-4 text-[var(--color-muted)] max-w-lg">
-                Use o formulário ao lado ou envie um e-mail direto para a equipe.
+                Use o formulário
+                <span className="hidden lg:inline"> ao lado</span>
+                {' '}ou envie um e-mail direto para a equipe.
                 Respondemos apenas a mensagens relacionadas à Django Technologies.
               </p>
 
