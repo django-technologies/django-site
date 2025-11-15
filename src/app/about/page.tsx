@@ -79,7 +79,7 @@ export default function About() {
             <article className="rounded-2xl border border-[#e0e3ea] bg-[#f5f6fa] p-6 md:p-7 flex flex-col md:flex-row gap-4 items-start">
               <div className="shrink-0">
                 <Image
-                  src="/team/bernardo-cto.jpg" // ajuste o caminho/arquivo
+                  src="/team/bernardo-cto-2.jpg" // ajuste o caminho/arquivo
                   alt="Bernardo Marques"
                   width={96}
                   height={96}
