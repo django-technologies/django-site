@@ -221,7 +221,7 @@ export default function ReportsClient({ items }: { items: ResearchItem[] }) {
                 ].join(" ")}
               >
                 <div className="p-6 md:p-7">
-                  <div className="grid gap-6 md:grid-cols-[420px_1fr_auto] md:items-center">
+                  <div className="grid gap-6 lg:grid-cols-[420px_1fr_auto] lg:items-center">
                     {/* Thumbnail premium (2:1) */}
                     <a
                       href={r.href}
@@ -260,7 +260,9 @@ export default function ReportsClient({ items }: { items: ResearchItem[] }) {
                     </div>
 
                     {/* Ações */}
-                    <div className="flex items-center gap-4 md:justify-end">
+                    <div className="flex flex-wrap items-center gap-4 lg:justify-end">
+
+
                       <a
                         href={r.href}
                         target="_blank"
