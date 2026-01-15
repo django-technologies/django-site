@@ -6,9 +6,9 @@ import Image from "next/image";
 
 const NAV = [
   { href: "/", label: "Home" },
-  { href: "/sobre", label: "Sobre" },       // ajuste se sua rota for /about
+  { href: "/about", label: "Sobre" },       // ajuste se sua rota for /about
   { href: "/reports", label: "Relatórios" },
-  { href: "/contato", label: "Contato" },   // ajuste se sua rota for /contact
+  { href: "/contact", label: "Contato" },   // ajuste se sua rota for /contact
 ];
 
 function MenuIcon(props: React.SVGProps<SVGSVGElement>) {
