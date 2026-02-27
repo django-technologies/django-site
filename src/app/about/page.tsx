@@ -70,6 +70,7 @@ export default function About() {
                 <p className="text-[var(--color-text)]">
                   <li>Graduação em Engenharia Química pela UFMG.</li>
                   <li>Pós-Graduação em Data Science pela PUC-RIO.</li>
+                  <li>Summer Program no IMPA (Instituto de Matemática Pura e Aplicada) — Machine Learning (nível Mestrado).</li>
                   <li>Experiência em Consultoria Estratégica, com diversos projetos em empresas Tech.</li>
                 </p>
               </div>
@@ -96,6 +97,7 @@ export default function About() {
                 <p className="text-[var(--color-text)]">
                   <li>Graduação em Engenharia de Produção pela PUC-MG.</li>
                   <li>Pós-Graduação em Data Science pelo ITA.</li>
+                  <li>Summer Program no IMPA (Instituto de Matemática Pura e Aplicada) — Machine Learning (nível Mestrado).</li>
                   <li>Experiência no Mercado Financeiro, com principal atuação na Mesa de Equities & Derivatives.</li>
                 </p>
               </div>
