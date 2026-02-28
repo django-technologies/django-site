@@ -13,20 +13,18 @@ const items: ResearchItem[] = [
     kind: "monthly",
     title: "Fundo Horizon",
     period: "Dezembro 2025",
-    publishedAt: "2026-01-05",
+    publishedAt: "2025-12-31",
     href: "/reports/relatorio-mensal-dez-2025.pdf",
-    cover: "/reports/covers/horizon-fund-dez-2025.png",
+    cover: "/reports/covers/horizon-fund-monthly-report.png",
   },
-
-  
-  // {
-  //   kind: "annual",
-  //   title: "Fundo Horizon",
-  //   period: "Relatório Anual 2025",
-  //   publishedAt: "2026-01-15",
-  //   href: "/reports/relatorio-anual-2025.pdf",
-  //   cover: "/reports/covers/horizon-annual-2025.png",
-  // },
+  {
+    kind: "monthly",
+    title: "Fundo Horizon",
+    period: "Janeiro 2026",
+    publishedAt: "2026-01-31",
+    href: "/reports/relatorio-mensal-jan-26.pdf",
+    cover: "/reports/covers/horizon-fund-monthly-report.png",
+  },
   // {
   //   kind: "market",
   //   title: "Market Note",
@@ -52,7 +50,7 @@ export default function ReportsPage() {
       <main className="flex-1">
         <section className="max-w-screen-xl mx-auto px-6 pt-16 pb-8 md:pt-20 md:pb-10">
           <h1 className="text-4xl md:text-6xl font-medium leading-tight tracking-[-0.02em]">
-            Relatórios Mensais
+            Relatórios
           </h1>
         </section>
 

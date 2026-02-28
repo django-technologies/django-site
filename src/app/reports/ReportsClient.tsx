@@ -252,7 +252,7 @@ export default function ReportsClient({ items }: { items: ResearchItem[] }) {
                       <div className="flex items-center gap-3 text-xs uppercase tracking-[0.14em] text-[var(--color-muted)]">
                         <span>{KIND_LABEL[r.kind]}</span>
                         <span className="h-1 w-1 rounded-full bg-[#c7cdda]" />
-                        <span>{formatDateBR(r.publishedAt)}</span>
+                        <span>{(r.period ?? "")}</span>
                       </div>
 
                       {/* linha estética discreta */}
