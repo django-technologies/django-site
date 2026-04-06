@@ -25,6 +25,22 @@ const items: ResearchItem[] = [
     href: "/reports/relatorio-mensal-jan-26.pdf",
     cover: "/reports/covers/horizon-fund-monthly-report.png",
   },
+  {
+    kind: "monthly",
+    title: "Fundo Horizon",
+    period: "Fevereiro 2026",
+    publishedAt: "2026-04-05",
+    href: "/reports/DjangoTech_Monthly_Report_Fev-26.pdf",
+    cover: "/reports/covers/horizon-fund-monthly-report.png",
+  },
+  {
+    kind: "monthly",
+    title: "Fundo Horizon",
+    period: "Março 2026",
+    publishedAt: "2026-04-06",
+    href: "/reports/DjangoTech_Monthly_Report_Mar-26.pdf",
+    cover: "/reports/covers/horizon-fund-monthly-report.png",
+  },
   // {
   //   kind: "market",
   //   title: "Market Note",
