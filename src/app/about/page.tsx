@@ -14,7 +14,7 @@ export default function About() {
       <main id="conteudo" className="flex-1">
         {/* Sobre a empresa + FormulaWall à direita */}
         <section className="max-w-screen-xl mx-auto px-6 pt-12 pb-10 md:pt-16 md:pb-14">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-12">
             {/* Texto à esquerda */}
             <div className="md:col-span-7">
               <h1 className="text-3xl md:text-4xl font-medium mb-6">Sobre</h1>
@@ -45,7 +45,7 @@ export default function About() {
         </section>
 
         {/* Sobre nós – fundadores */}
-        <section className="max-w-screen-xl mx-auto px-6 pb-14 md:pb-16">
+        <section className="max-w-screen-xl mx-auto px-6 pt-2 pb-14 md:pt-2 md:pb-16">
           <h2 className="text-xl md:text-2xl font-semibold mb-6">Fundadores</h2>
 
           <div className="grid gap-6 md:grid-cols-2">

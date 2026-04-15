@@ -48,10 +48,12 @@ export default function Home() {
           ].map((c, i) => (
             <div
               key={i}
-              className="rounded-2xl p-6 bg-[#f3f4f7] border border-[#e0e3ea]"
+              className="rounded-[24px] border border-[color:rgb(17_20_24_/_8%)] bg-white p-7 shadow-[0_10px_24px_rgba(17,20,24,0.04)]"
             >
-              <h3 className="font-semibold text-[var(--color-text)]">{c.t}</h3>
-              <p className="mt-2 text-sm text-[var(--color-muted)]">{c.d}</p>
+              <h3 className="text-lg font-semibold tracking-[-0.02em] text-[var(--color-text)]">
+                {c.t}
+              </h3>
+              <p className="mt-3 text-[15px] leading-7 text-[color:rgb(17_20_24_/_72%)]">{c.d}</p>
             </div>
           ))}
         </section>

@@ -44,7 +44,7 @@ export default function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="grid gap-4 rounded-2xl border border-[color:rgb(42_47_54_/_15%)] bg-white p-6 shadow-sm"
+      className="grid gap-5 rounded-2xl border border-[color:rgb(42_47_54_/_15%)] bg-white p-6 shadow-sm lg:p-7"
     >
       <h2 className="text-lg font-medium">Envie uma mensagem</h2>
 
