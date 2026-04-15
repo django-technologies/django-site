@@ -3,6 +3,7 @@ import Header from '../../components/header';
 import Footer from '../../components/footer';
 import Image from 'next/image';
 import FormulaWall from '../../components/formula-wall';
+import { Linkedin } from 'lucide-react';
 
 export const metadata = { title: 'Sobre' };
 
@@ -50,56 +51,88 @@ export default function About() {
 
           <div className="grid gap-6 md:grid-cols-2">
             {/* Você */}
-            <article className="rounded-2xl border border-[#e0e3ea] bg-[#f5f6fa] p-6 md:p-7 flex flex-col md:flex-row gap-4 items-start">
-              <div className="shrink-0">
-                <Image
-                  src="/team/pedro-ceo.png" // ajuste o caminho/arquivo
-                  alt="Pedro Cantarutti"
-                  width={96}
-                  height={96}
-                  className="h-24 w-24 rounded-full object-cover"
-                />
-              </div>
-              <div className="space-y-2 text-sm md:text-base">
-                <div>
-                  <h3 className="font-semibold text-[var(--color-text)]">Pedro Cantarutti</h3>
-                  <p className="text-xs uppercase tracking-wide text-[var(--color-muted)]">
-                    Co-fundador · CEO
-                  </p>
+            <article className="relative rounded-[28px] border border-[color:rgb(17_20_24_/_8%)] bg-white p-7 shadow-[0_16px_40px_rgba(17,20,24,0.06)] md:p-8">
+              <a
+                href="https://www.linkedin.com/in/pedroarthurcantarutti/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Abrir o LinkedIn de Pedro Cantarutti em nova aba"
+                className="absolute right-5 top-5 inline-flex h-10 w-10 items-center justify-center rounded-full border border-[color:rgb(17_20_24_/_8%)] bg-[color:rgb(255_255_254_/_92%)] text-[var(--color-muted)] shadow-[0_8px_20px_rgba(17,20,24,0.05)] transition-colors hover:text-[var(--color-text)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[color:rgb(17_20_24_/_12%)]"
+              >
+                <Linkedin className="h-4 w-4" strokeWidth={1.8} />
+                <span className="sr-only">LinkedIn de Pedro Cantarutti</span>
+              </a>
+
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
+                <div className="shrink-0">
+                  <Image
+                    src="/team/pedro-ceo.png" // ajuste o caminho/arquivo
+                    alt="Pedro Cantarutti"
+                    width={88}
+                    height={88}
+                    className="h-[5.5rem] w-[5.5rem] rounded-full object-cover"
+                  />
                 </div>
-                <p className="text-[var(--color-text)]">
-                  <li>Graduação em Engenharia Química pela UFMG.</li>
-                  <li>Pós-Graduação em Data Science pela PUC-RIO.</li>
-                  <li>Summer Program no IMPA (Instituto de Matemática Pura e Aplicada) — Machine Learning (nível Mestrado).</li>
-                  <li>Experiência em Consultoria Estratégica, com diversos projetos em empresas Tech.</li>
-                </p>
+
+                <div className="min-w-0 space-y-3.5 text-sm md:text-base sm:pr-10">
+                  <div className="space-y-2.5">
+                    <h3 className="text-xl font-semibold tracking-[-0.02em] text-[var(--color-text)]">
+                      Pedro Cantarutti
+                    </h3>
+                    <p className="inline-flex w-fit items-center rounded-full border border-[color:rgb(17_20_24_/_8%)] bg-[color:rgb(17_20_24_/_3%)] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.12em] text-[var(--color-muted)]">
+                      Co-fundador · CEO
+                    </p>
+                  </div>
+
+                  <ul className="max-w-[34ch] list-disc space-y-1.5 pl-4 leading-6 text-[color:rgb(17_20_24_/_88%)] marker:text-[color:rgb(17_20_24_/_48%)]">
+                    <li>Engenheiro Químico pela UFMG, com pós-graduação em Data Science pela PUC-Rio.</li>
+                    <li>Formação avançada em Machine Learning pelo IMPA, em nível de mestrado.</li>
+                    <li>Experiência em consultoria estratégica, com atuação em projetos para empresas de tecnologia.</li>
+                  </ul>
+                </div>
               </div>
             </article>
 
             {/* Seu sócio */}
-            <article className="rounded-2xl border border-[#e0e3ea] bg-[#f5f6fa] p-6 md:p-7 flex flex-col md:flex-row gap-4 items-start">
-              <div className="shrink-0">
-                <Image
-                  src="/team/bernardo-cto-site.png" // ajuste o caminho/arquivo
-                  alt="Bernardo Marques"
-                  width={96}
-                  height={96}
-                  className="h-24 w-24 rounded-full object-cover"
-                />
-              </div>
-              <div className="space-y-2 text-sm md:text-base">
-                <div>
-                  <h3 className="font-semibold text-[var(--color-text)]">Bernardo Marques</h3>
-                  <p className="text-xs uppercase tracking-wide text-[var(--color-muted)]">
-                    Co-fundador · CTO
-                  </p>
+            <article className="relative rounded-[28px] border border-[color:rgb(17_20_24_/_8%)] bg-white p-7 shadow-[0_16px_40px_rgba(17,20,24,0.06)] md:p-8">
+              <a
+                href="https://www.linkedin.com/in/bernardo-byrro/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Abrir o LinkedIn de Bernardo Marques em nova aba"
+                className="absolute right-5 top-5 inline-flex h-10 w-10 items-center justify-center rounded-full border border-[color:rgb(17_20_24_/_8%)] bg-[color:rgb(255_255_254_/_92%)] text-[var(--color-muted)] shadow-[0_8px_20px_rgba(17,20,24,0.05)] transition-colors hover:text-[var(--color-text)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[color:rgb(17_20_24_/_12%)]"
+              >
+                <Linkedin className="h-4 w-4" strokeWidth={1.8} />
+                <span className="sr-only">LinkedIn de Bernardo Marques</span>
+              </a>
+
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
+                <div className="shrink-0">
+                  <Image
+                    src="/team/bernardo-cto-site.png" // ajuste o caminho/arquivo
+                    alt="Bernardo Marques"
+                    width={88}
+                    height={88}
+                    className="h-[5.5rem] w-[5.5rem] rounded-full object-cover"
+                  />
                 </div>
-                <p className="text-[var(--color-text)]">
-                  <li>Graduação em Engenharia de Produção pela PUC-MG.</li>
-                  <li>Pós-Graduação em Data Science pelo ITA.</li>
-                  <li>Summer Program no IMPA (Instituto de Matemática Pura e Aplicada) — Machine Learning (nível Mestrado).</li>
-                  <li>Experiência no Mercado Financeiro, com principal atuação na Mesa de Equities & Derivatives.</li>
-                </p>
+
+                <div className="min-w-0 space-y-3.5 text-sm md:text-base sm:pr-10">
+                  <div className="space-y-2.5">
+                    <h3 className="text-xl font-semibold tracking-[-0.02em] text-[var(--color-text)]">
+                      Bernardo Marques
+                    </h3>
+                    <p className="inline-flex w-fit items-center rounded-full border border-[color:rgb(17_20_24_/_8%)] bg-[color:rgb(17_20_24_/_3%)] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.12em] text-[var(--color-muted)]">
+                      Co-fundador · CTO
+                    </p>
+                  </div>
+
+                  <ul className="max-w-[34ch] list-disc space-y-1.5 pl-4 leading-6 text-[color:rgb(17_20_24_/_88%)] marker:text-[color:rgb(17_20_24_/_48%)]">
+                    <li>Engenheiro de Produção pela PUC Minas, com pós-graduação em Data Science pelo ITA.</li>
+                    <li>Formação avançada em Machine Learning pelo IMPA, em nível de mestrado.</li>
+                    <li>Experiência no mercado financeiro, com atuação em equities e derivativos.</li>
+                  </ul>
+                </div>
               </div>
             </article>
           </div>
