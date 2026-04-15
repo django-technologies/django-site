@@ -3,7 +3,6 @@ import Header from '../../components/header';
 import Footer from '../../components/footer';
 import Image from 'next/image';
 import FormulaWall from '../../components/formula-wall';
-import { Linkedin } from 'lucide-react';
 
 export const metadata = { title: 'Sobre' };
 
@@ -59,7 +58,21 @@ export default function About() {
                 aria-label="Abrir o LinkedIn de Pedro Cantarutti em nova aba"
                 className="absolute right-5 top-5 inline-flex h-10 w-10 items-center justify-center rounded-full border border-[color:rgb(17_20_24_/_8%)] bg-[color:rgb(255_255_254_/_92%)] text-[var(--color-muted)] shadow-[0_8px_20px_rgba(17,20,24,0.05)] transition-colors hover:text-[var(--color-text)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[color:rgb(17_20_24_/_12%)]"
               >
-                <Linkedin className="h-4 w-4" strokeWidth={1.8} />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={1.8}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-4 w-4"
+                  aria-hidden="true"
+                >
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                  <rect width="4" height="12" x="2" y="9" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg>
                 <span className="sr-only">LinkedIn de Pedro Cantarutti</span>
               </a>
 
@@ -102,7 +115,21 @@ export default function About() {
                 aria-label="Abrir o LinkedIn de Bernardo Marques em nova aba"
                 className="absolute right-5 top-5 inline-flex h-10 w-10 items-center justify-center rounded-full border border-[color:rgb(17_20_24_/_8%)] bg-[color:rgb(255_255_254_/_92%)] text-[var(--color-muted)] shadow-[0_8px_20px_rgba(17,20,24,0.05)] transition-colors hover:text-[var(--color-text)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[color:rgb(17_20_24_/_12%)]"
               >
-                <Linkedin className="h-4 w-4" strokeWidth={1.8} />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={1.8}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-4 w-4"
+                  aria-hidden="true"
+                >
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                  <rect width="4" height="12" x="2" y="9" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg>
                 <span className="sr-only">LinkedIn de Bernardo Marques</span>
               </a>
 
