@@ -1,19 +1,24 @@
 :root {
-  --neutral-0: #FFFFFE; /* bg */
-  --neutral-1: #D3D3D2;
-  --neutral-2: #A1A0A0;
-  --neutral-3: #222021;
-  --neutral-4: #1B191A;
-  --neutral-5: #111418; /* texto escuro forte */ 
-  --brand-black: #111418;
-  --brand-black-600: #0D1013; /* hover */
-  --brand-black-700: #0A0C0F; /* teal */
+  --neutral-0: #fffffe;
+  --neutral-1: #ffffff;
+  --neutral-2: #e3e6df;
+  --neutral-3: #5c625a;
+  --neutral-4: #1f241f;
+  --neutral-5: #050505;
 
-  --color-bg: var(--neutral-0);
+  --brand-green: #51d63b;
+  --brand-green-dark: #37b329;
+  --brand-black: #050505;
+  --brand-black-600: #101010;
+  --brand-black-700: #000000;
+
+  --color-bg: #fafafa;
   --color-surface: var(--neutral-1);
-  --color-text: var(--neutral-5);
+  --color-text: var(--brand-black);
   --color-muted: var(--neutral-3);
-  --color-accent: var(--accent);
+  --color-border: rgba(5, 5, 5, 0.08);
+  --color-accent: var(--brand-green);
+  --focus-ring: rgba(81, 214, 59, 0.3);
 
   --radius: 16px;
   --space-1: 8px; --space-2: 16px; --space-3: 24px;

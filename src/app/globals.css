@@ -1,8 +1,23 @@
 @import "tailwindcss";
 
 html { color-scheme: light; }
-body { background: var(--color-bg); color: var(--color-text); }
-:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(45,106,227,.4); border-radius: 6px; }
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(81, 214, 59, 0.24);
+  color: var(--brand-black);
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--focus-ring);
+  border-radius: 6px;
+}
 
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: .001ms !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }

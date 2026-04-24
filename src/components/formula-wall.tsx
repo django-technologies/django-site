@@ -1,129 +1,278 @@
-// components/formula-wall.tsx
-// Nuvem minimal de micro-fórmulas — MAIOR e sem overlaps.
-// Sem fundo, sem rotações; prevenção de colisão robusta.
+type FormulaWallProps = {
+  className?: string;
+  decorative?: boolean;
+  variant?: 'default' | 'subtle' | 'hero';
+};
 
-export default function FormulaWall() {
-  const F = [
-    "F = ma", "E = mc²", "V = IR", "pV = nRT",
-    "r = μ + βf", "σ²", "Var(r)", "∑w = 1",
-    "wᵀΣw", "PV = Σ CFₜ/(1+r)ᵗ", "rₜ = α+βfₜ",
-    "dS = μSdt + σSdW", "dX = κ(θ−X)dt + σdW",
-    "N(0,1)", "z = (x−μ)/σ", "Φ(z)",
-    "logit = 1/(1+e^{−x})", "softmax = eᶻ/Σeᶻ",
-    "KL = Σ p log(p/q)", "(XᵀX+λI)β = Xᵀy",
-    "Σv = λv", "X = UΣVᵀ", "ρ = Σxy/(σxσy)",
-    "∫eˣdx = eˣ", "eˣ ≈ 1+x", "sin²+cos²=1",
-    "∇·E = ρ/ε₀", "∇×E = −∂B/∂t", "ω = 2πf",
-    "SNR = μ/σ", "π ≈ 3.1416", "Sharpe = μ/σ",
-     "F = ma", "E = mc²", "V = IR", "pV = nRT",
-    "r = μ + βf", "σ²", "Var(r)", "∑w = 1",
-  ];
+// Used by the default (full-page) variant
+const FORMULAS = [
+  'F = ma',
+  'E = mc²',
+  'V = IR',
+  'pV = nRT',
+  'r = μ + βf',
+  'σ²',
+  'Var(r)',
+  '∑w = 1',
+  'wᵀΣw',
+  'PV = ∑ CFₜ/(1+r)ᵗ',
+  'rₜ = α+βfₜ',
+  'dS = μSdt + σSdW',
+  'dX = κ(θ−X)dt + σdW',
+  'N(0,1)',
+  'z = (x−μ)/σ',
+  'Φ(z)',
+  'logit = 1/(1+e^{−x})',
+  'softmax = eᶻ/∑eᶻ',
+  'KL = ∑ p log(p/q)',
+  '(XᵀX+λI)β = Xᵀy',
+  'Σv = λv',
+  'X = UΣVᵀ',
+  'ρ = Σxy/(σxσy)',
+  '∫eˣdx = eˣ',
+  'eˣ ≈ 1+x',
+  'sin²+cos²=1',
+  '∇·E = ρ/ε₀',
+  '∇×E = −∂B/∂t',
+  'ω = 2πf',
+  'SNR = μ/σ',
+  'π ≈ 3.1416',
+  'Sharpe = μ/σ',
+  'F = ma',
+  'E = mc²',
+  'V = IR',
+  'pV = nRT',
+  'r = μ + βf',
+  'σ²',
+  'Var(r)',
+  '∑w = 1',
+];
 
-  // Canvas e centro da nuvem (mais à direita)
-  const W = 1200, H = 700;
-  const cx = W * 0.70;
-  const cy = H * 0.48;
+// Curated quant/stats formulas for the hero variant
+const HERO_FORMULAS = [
+  'r = μ + βf',
+  'σ²ₚ = wᵀΣw',
+  'Sharpe = μ/σ',
+  'dS = μSdt + σSdW',
+  'N(0,1)',
+  'z = (x−μ)/σ',
+  'Φ(z)',
+  '∑w = 1',
+  'β = Cov/σ²ₘ',
+  'E[r]',
+  'VaR(α)',
+  'rₜ = α + βfₜ',
+  'dX = κ(θ−X)dt',
+  'X = UΣVᵀ',
+  'ρ = Σxy/(σxσy)',
+  '(XᵀX+λI)β = Xᵀy',
+  'Σv = λv',
+  'P(r>0)',
+  'argmin L(θ)',
+  'KL = ∑p log(p/q)',
+  'log P(x|θ)',
+  '∂L/∂θ',
+  'Var(r)',
+  'CVaR',
+  'E[X|Y]',
+  'Cov(rᵢ,rₘ)',
+  'βᵀx',
+  'Σ⁻¹μ',
+  'IC = corr(s,r)',
+  'rank(xₜ)',
+  'EWMA(σ²)',
+  'Q = XᵀWX',
+  '∇L(θ)=0',
+  'Pₜ = E[CFₜ]',
+  'λ = risk',
+  'signal / noise',
+  'drawdown',
+  'τ = rebalance',
+];
 
-  // Seed fixa → determinístico
-  const SEED = 2025;
-  const rand = (s: number) => {
-    const x = Math.sin((s + SEED) * 127.1) * 43758.5453;
+export default function FormulaWall({
+  className,
+  decorative = false,
+  variant = 'default',
+}: FormulaWallProps) {
+  const subtle = variant === 'subtle';
+  const hero = variant === 'hero';
+
+  const formulas = hero
+    ? HERO_FORMULAS
+    : subtle
+    ? FORMULAS.filter((_, index) => index % 3 === 0)
+    : FORMULAS;
+
+  const width = hero ? 1100 : subtle ? 1000 : 1200;
+  const height = hero ? 640 : subtle ? 620 : 700;
+  const centerX = width * (hero ? 0.44 : subtle ? 0.58 : 0.7);
+  const centerY = height * (subtle || hero ? 0.5 : 0.48);
+
+  const seed = 2025;
+  const rand = (value: number) => {
+    const x = Math.sin((value + seed) * 127.1) * 43758.5453;
     return x - Math.floor(x);
   };
 
-  // Medidas aproximadas do <text> (monospace-like)
-  const WIDTH_FACTOR = 0.62;       // ↑ maior p/ evitar sobreposição horizontal
-  const HEIGHT_FACTOR = 1.35;      // ↑ por causa de sobrescritos/subscritos
-  const textW = (t: string, fs: number) => t.length * fs * WIDTH_FACTOR;
-  const textH = (fs: number) => fs * HEIGHT_FACTOR;
+  const widthFactor = hero ? 0.54 : subtle ? 0.58 : 0.62;
+  const heightFactor = subtle || hero ? 1.28 : 1.35;
+  const textWidth = (text: string, fontSize: number) => text.length * fontSize * widthFactor;
+  const textHeight = (fontSize: number) => fontSize * heightFactor;
 
   type Node = {
-    x: number; y: number; fs: number; op: number; text: string;
+    fontSize: number;
+    opacity: number;
     rect: [number, number, number, number];
+    text: string;
+    x: number;
+    y: number;
   };
 
-  // Parâmetros mais “soltos”
-  const SIZE_MIN = 25;
-  const SIZE_MAX = 35;
-  const margin = 30;      // respiro nas bordas
-  const pad = 8;         // espaço entre fórmulas
-  const maxTries = 10000;   // mais chances para achar lugar
-
+  const sizeMin = hero ? 15 : subtle ? 16 : 25;
+  const sizeMax = hero ? 25 : subtle ? 23 : 35;
+  const margin = hero ? 20 : subtle ? 32 : 30;
+  const pad = hero ? 8 : subtle ? 10 : 8;
+  const maxTries = hero ? 10000 : subtle ? 8000 : 10000;
   const nodes: Node[] = [];
 
-  F.forEach((text, i) => {
-    // tamanhos 16–20 com pequena variação
-    let fs = SIZE_MIN + Math.floor(rand(i + 7) * (SIZE_MAX - SIZE_MIN + 1));
-
+  formulas.forEach((text, index) => {
+    const fontSize = sizeMin + Math.floor(rand(index + 7) * (sizeMax - sizeMin + 1));
     let placed: Node | null = null;
 
-    for (let t = 0; t < maxTries; t++) {
-      // espiral elíptica (mais larga, mais baixa)
-      const a  = t * 0.92 + i * 0.37;
-      const rx = 28 + Math.sqrt(t + 1) * 30 + rand(i + t + 19) * 16;
-      const ry = rx * 0.80;
-      const x0 = cx + rx * Math.cos(a) + (rand(i + t + 21) - 0.5) * 10;
-      const y0 = cy + ry * Math.sin(a) + (rand(i + t + 22) - 0.5) * 8;
+    for (let attempt = 0; attempt < maxTries; attempt++) {
+      const angle = attempt * (subtle || hero ? 0.82 : 0.92) + index * (hero ? 0.51 : 0.37);
+      const radiusX =
+        22 +
+        Math.sqrt(attempt + 1) * (hero ? 31 : subtle ? 32 : 30) +
+        rand(index + attempt + 19) * (hero ? 34 : subtle ? 22 : 16);
+      const radiusY = radiusX * (hero ? 0.68 : subtle ? 0.72 : 0.8);
+      const rawX = centerX + radiusX * Math.cos(angle) + (rand(index + attempt + 21) - 0.5) * (hero ? 18 : 10);
+      const rawY = centerY + radiusY * Math.sin(angle) + (rand(index + attempt + 22) - 0.5) * (hero ? 14 : 8);
 
-      const w = textW(text, fs);
-      const h = textH(fs);
+      const w = textWidth(text, fontSize);
+      const h = textHeight(fontSize);
+      const x = rawX - w / 2;
+      const y = rawY + h * 0.35;
 
-      // centraliza
-      const x = x0 - w / 2;
-      const y = y0 + h * 0.35; // baseline
+      const rect: [number, number, number, number] = [x - pad, y - h - pad, x + w + pad, y + pad];
 
-      const rect: [number, number, number, number] = [
-        x - pad, y - h - pad, x + w + pad, y + pad,
-      ];
+      if (rect[0] < margin || rect[2] > width - margin || rect[1] < margin || rect[3] > height - margin) {
+        continue;
+      }
 
-      // limites
-      if (rect[0] < margin || rect[2] > W - margin || rect[1] < margin || rect[3] > H - margin) continue;
-
-      // colisão (AABB)
-      let collide = false;
-      for (const n of nodes) {
-        const r2 = n.rect;
-        if (!(rect[2] < r2[0] || rect[0] > r2[2] || rect[3] < r2[1] || rect[1] > r2[3])) {
-          collide = true; break;
+      let collides = false;
+      for (const node of nodes) {
+        const other = node.rect;
+        if (!(rect[2] < other[0] || rect[0] > other[2] || rect[3] < other[1] || rect[1] > other[3])) {
+          collides = true;
+          break;
         }
       }
-      if (collide) continue;
+      if (collides) continue;
 
-      // opacidade: leve boost no miolo, sem exagero
-      const dist = Math.hypot(x0 - cx, y0 - cy);
-      const centerBoost = dist < (W * 0.12) ? 0.10 : dist < (W * 0.20) ? 0.06 : 0;
-      const op = 0.34 + (rand(i + 3) * 0.16) + centerBoost; // 0.34–0.60
+      const distance = Math.hypot(rawX - centerX, rawY - centerY);
+      const centerBoost =
+        subtle || hero
+          ? 0
+          : distance < width * 0.12
+          ? 0.1
+          : distance < width * 0.2
+          ? 0.06
+          : 0;
 
-      placed = { x, y, fs, op, text, rect };
+      // hero: fill is fully opaque (rgba 1.0), so opacity IS the final visual alpha (0.22–0.38)
+      // subtle: fill has 0.82 alpha, effective visual = 0.82 × opacity → base 0.09 gives ~7.4%
+      // default: fill is brand-black, opacity 0.34–0.50 + centerBoost
+      const opacity = hero
+        ? 0.22 + rand(index + 3) * 0.16
+        : subtle
+        ? 0.09 + rand(index + 3) * 0.07
+        : 0.34 + rand(index + 3) * 0.16 + centerBoost;
+
+      placed = { fontSize, opacity, rect, text, x, y };
       break;
     }
 
-    // Se não coube sem overlap, simplesmente pula (melhor do que encolher ou sobrepor)
     if (placed) nodes.push(placed);
   });
 
+  // Dot grid for hero variant (pre-computed, deterministic)
+  const dotCols = hero ? Array.from({ length: 15 }, (_, i) => 34 + i * 74) : [];
+  const dotRows = hero ? Array.from({ length: 10 }, (_, i) => 42 + i * 62) : [];
+  const gridCols = hero ? Array.from({ length: 8 }, (_, i) => 92 + i * 126) : [];
+  const gridRows = hero ? Array.from({ length: 5 }, (_, i) => 92 + i * 112) : [];
+
   return (
     <svg
-      viewBox={`0 0 ${W} ${H}`}
+      viewBox={`0 0 ${width} ${height}`}
       xmlns="http://www.w3.org/2000/svg"
-      preserveAspectRatio="none"
-      className="block h-full w-full"
-      role="img"
-      aria-label="Nuvem de micro-fórmulas (sem fundo, sem sobreposição)"
+      preserveAspectRatio={hero ? 'xMinYMid slice' : subtle ? 'xMidYMid slice' : 'none'}
+      className={['block h-full w-full', className].filter(Boolean).join(' ')}
+      role={decorative ? undefined : 'img'}
+      aria-hidden={decorative || undefined}
+      aria-label={decorative ? undefined : 'Nuvem de micro-formulas'}
       style={{ background: 'transparent' }}
     >
+      {hero && (
+        <>
+          <g stroke="rgba(5,5,5,0.045)" strokeWidth="0.75">
+            {gridCols.map((x) => (
+              <line key={`vx-${x}`} x1={x} y1="32" x2={x} y2="608" />
+            ))}
+            {gridRows.map((y) => (
+              <line key={`hy-${y}`} x1="28" y1={y} x2="1072" y2={y} />
+            ))}
+          </g>
+
+          <path
+            d="M112 434 C238 365 304 424 416 342 S650 260 790 316 S960 356 1040 288"
+            fill="none"
+            stroke="rgba(5,5,5,0.085)"
+            strokeWidth="1"
+          />
+          <path
+            d="M152 248 C252 206 330 234 436 202 S642 156 784 208"
+            fill="none"
+            stroke="rgba(81,214,59,0.18)"
+            strokeWidth="1.2"
+          />
+
+          <g fill="rgba(5,5,5,0.12)">
+            {dotRows.flatMap((y) =>
+              dotCols.map((x) => (
+                <circle key={`d${x}-${y}`} cx={x} cy={y} r={1.35} />
+              ))
+            )}
+          </g>
+
+          <g fill="rgba(81,214,59,0.34)">
+            <circle cx="210" cy="228" r="2" />
+            <circle cx="494" cy="356" r="1.8" />
+            <circle cx="742" cy="204" r="2.2" />
+            <circle cx="906" cy="424" r="1.7" />
+          </g>
+        </>
+      )}
+
       <g
         fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace"
-        fill="var(--brand-black)"
+        fill={
+          hero
+            ? 'rgba(5,5,5,1)'          // fully opaque: opacity attribute IS the final alpha
+            : subtle
+            ? 'rgba(5, 5, 5, 0.82)'    // effective alpha = 0.82 × opacity
+            : 'var(--brand-black)'
+        }
       >
-        {nodes.map(({ x, y, fs, op, text }, idx) => (
+        {nodes.map(({ x, y, fontSize, opacity, text }, index) => (
           <text
-            key={idx}
+            key={index}
             x={x}
             y={y}
-            fontSize={fs}
-            opacity={op}
-            style={{ letterSpacing: '0.01em' }}
+            fontSize={fontSize}
+            opacity={opacity}
+            style={{ letterSpacing: subtle || hero ? '0.03em' : '0.01em' }}
           >
             {text}
           </text>
