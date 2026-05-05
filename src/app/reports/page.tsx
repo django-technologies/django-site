@@ -41,6 +41,14 @@ const items: ResearchItem[] = [
     href: "/reports/DjangoTech_Monthly_Report_Mar-26.pdf",
     cover: "/reports/covers/horizon-cover.png",
   },
+    {
+    kind: "monthly",
+    title: "Fundo Horizon",
+    period: "Abril 2026",
+    publishedAt: "2026-05-05",
+    href: "/reports/DjangoTech_Monthly_Report_2026_04.pdf",
+    cover: "/reports/covers/horizon-cover.png",
+  },
 ];
 
 export default function ReportsPage() {
