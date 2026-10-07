@@ -5,7 +5,7 @@ import FormulaWall from '../../components/formula-wall';
 
 export const metadata = {
   title: 'Sobre — Django Technologies',
-  description: 'Gestora quantitativa orientada por pesquisa, engenharia de dados e execução sistemática.',
+  description: 'Tecnologia quantitativa aplicada a mercados financeiros, dados e infraestrutura analítica.',
 };
 
 export default function About() {
@@ -25,24 +25,24 @@ export default function About() {
               <div className="mt-10 h-px w-[4.5rem] bg-[color:rgb(81_214_59_/_78%)]" />
 
               <h1 className="mt-8 max-w-[12.5ch] text-[clamp(2.25rem,4.5vw,3.75rem)] font-medium leading-[0.94] tracking-[-0.035em] text-[var(--color-text)]">
-                Sobre
+                Sobre a Django
               </h1>
 
               <div className="mt-6 max-w-[64ch] space-y-5 text-[17px] leading-8 text-[color:rgb(5_5_5_/_72%)]">
                 <p>
-                  A Django Technologies é uma gestora quantitativa. Combinamos pesquisa quantitativa,
-                  engenharia de dados e execução sistemática para o desenvolvimento e a implementação
-                  de estratégias de investimento.
+                  A Django Technologies nasceu para construir tecnologia quantitativa aplicada a mercados financeiros.
+                  Hoje, desenvolvemos uma plataforma de inteligência quantitativa com dados, indicadores, rankings
+                  estatísticos, métricas de risco, simulações e carteiras-modelo hipotéticas.
                 </p>
                 <p>
-                  Nosso processo segue princípios claros: qualidade dos dados, hipóteses testáveis,
-                  validação estatística rigorosa, governança e disciplina operacional. A implementação
-                  das estratégias é apoiada por tecnologia proprietária e rotinas automatizadas.
+                  Nossa visão de longo prazo é unir pesquisa, engenharia e disciplina sistemática para criar uma nova
+                  infraestrutura de decisão em mercados. O produto atual é informacional, não personalizado e orientado
+                  por metodologia quantitativa.
                 </p>
                 <p>
-                  O escopo de pesquisa abrange mercados globais, incluindo ações, derivativos, renda fixa,
-                  câmbio e criptoativos. As estratégias são estruturadas a partir de métodos estatísticos,
-                  critérios objetivos de alocação e monitoramento contínuo dos processos de execução.
+                  Seguimos princípios claros: qualidade dos dados, hipóteses testáveis, validação estatística, risco
+                  explícito, governança e transparência metodológica. Essa cultura quantitativa guia tanto a plataforma
+                  atual quanto a ambição institucional de longo prazo da Django.
                 </p>
               </div>
             </div>

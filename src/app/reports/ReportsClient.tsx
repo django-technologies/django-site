@@ -21,11 +21,6 @@ const KIND_LABEL: Record<ResearchItemKind, string> = {
   article: "Artigo",
 };
 
-function formatDateBR(iso: string) {
-  const d = new Date(iso);
-  return new Intl.DateTimeFormat("pt-BR", { dateStyle: "medium" }).format(d);
-}
-
 function yearOf(iso: string) {
   return new Date(iso).getFullYear();
 }

@@ -4,6 +4,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const base = 'https://www.djangotechnologies.com';
   return [
     { url: `${base}/`, changeFrequency: 'monthly', priority: 1 },
+    { url: `${base}/memorando` },
     { url: `${base}/about` },
     { url: `${base}/strategies` },
     { url: `${base}/insights` },

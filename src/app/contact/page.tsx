@@ -4,7 +4,7 @@ import ContactForm from './ContactForm';
 
 export const metadata = {
   title: 'Contato — Django Technologies',
-  description: 'Entre em contato com a Django Technologies para assuntos institucionais.',
+  description: 'Entre na lista de acesso ao produto ou fale com a Django Technologies.',
 };
 
 export default function Contact() {
@@ -25,8 +25,8 @@ export default function Contact() {
 
               <h1 className="mt-8 text-4xl font-medium tracking-[-0.04em] md:text-5xl">Contato</h1>
               <p className="mt-6 max-w-[32rem] text-[17px] leading-8 text-[color:rgb(5_5_5_/_70%)]">
-                Use o formulário ou envie um e-mail direto para a equipe. Respondemos a mensagens de caráter
-                institucional relacionadas à Django Technologies.
+                Entre na lista de acesso ao produto digital ou envie uma mensagem institucional para a equipe da
+                Django Technologies.
               </p>
 
               <div className="mt-8 grid gap-5 rounded-[28px] border border-[color:var(--color-border)] bg-white p-6 shadow-[0_14px_34px_rgba(17,20,24,0.05)] lg:p-7">
@@ -48,9 +48,9 @@ export default function Contact() {
                 <div className="border-t border-[color:var(--color-border)] pt-4 text-sm text-[var(--color-muted)]">
                   <p className="font-medium text-[var(--color-text)]">Assuntos comuns</p>
                   <ul className="mt-3 space-y-2">
-                    <li>• Informações institucionais</li>
-                    <li>• Parcerias e mídia</li>
-                    <li>• Oportunidades profissionais</li>
+                    <li>• Lista de acesso ao produto</li>
+                    <li>• Parcerias, mídia e conversas institucionais</li>
+                    <li>• Demonstrações e interesse comercial</li>
                     <li>• Questões gerais sobre a Django Technologies</li>
                   </ul>
                 </div>

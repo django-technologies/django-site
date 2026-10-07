@@ -5,9 +5,9 @@ import Link from "next/link";
 import Image from "next/image";
 
 const NAV = [
-  { href: "/", label: "Home" },
+  { href: "/#produto", label: "Produto" },
+  { href: "/memorando", label: "Memorando" },
   { href: "/about", label: "Sobre" },
-  { href: "/reports", label: "Relat\u00f3rios" },
   { href: "/contact", label: "Contato" },
 ];
 
@@ -103,7 +103,7 @@ export default function Header() {
           ) : null}
         </Link>
 
-        <nav className="hidden items-center gap-9 text-sm font-medium md:flex">
+        <nav className="hidden items-center gap-8 text-sm font-medium md:flex">
           {NAV.map((item) => (
             <Link
               key={item.href}

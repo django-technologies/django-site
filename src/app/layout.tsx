@@ -1,21 +1,19 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import './globals.css';
 import './tokens.css';
 
-const inter = Inter({ subsets: ['latin'], display: 'swap' });
-
 export const metadata: Metadata = {
-  title: { default: 'Django Technologies — quantitative management firm', template: '%s — Django Technologies' },
-  description: 'Pesquisa disciplinada, engenharia de dados e execução sistemática.',
+  title: { default: 'Django Technologies — inteligência quantitativa', template: '%s — Django Technologies' },
+  description:
+    'Plataforma de inteligência quantitativa com dados, indicadores, métricas de risco e simulações históricas.',
   metadataBase: new URL('https://www.djangotechnologies.com'),
   openGraph: {
     title: 'Django Technologies',
-    description: 'Pesquisa disciplinada, engenharia de dados e execução sistemática.',
+    description: 'Dados de mercado, indicadores quantitativos e painéis analíticos para acompanhar mercados com método.',
     url: 'https://www.djangotechnologies.com',
     siteName: 'Django Technologies',
     images: ['/og.png'],
-    type: 'website'
+    type: 'website',
   },
   icons: {
     icon: [
@@ -31,7 +29,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR">
-      <body className={inter.className}>{children}</body>
+      <body>{children}</body>
     </html>
   );
 }
