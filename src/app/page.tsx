@@ -119,11 +119,11 @@ export default function Home() {
             <div>
               <Eyebrow>Research</Eyebrow>
               <h2 className="mt-5 max-w-[16ch] text-balance font-display text-[clamp(1.9rem,3.4vw,3rem)] font-semibold leading-[1.05] tracking-[-0.035em]">
-                Pesquisa empírica aplicada a mercados.
+                Pesquisa quantitativa aplicada a mercados.
               </h2>
               <p className="mt-4 max-w-[44ch] text-[16px] leading-[1.65] text-[var(--color-ink-soft)] md:text-[17px]">
-                A Django conduz pesquisa quantitativa própria. É ela que define o que entra no produto — e o que
-                fica de fora.
+                A Django desenvolve e valida modelos quantitativos para ações, renda fixa, séries temporais, risco e
+                dados de mercado. O que chega ao produto passa por pesquisa, teste e validação.
               </p>
 
               <ol className="mt-8 flex flex-wrap items-center gap-y-2 text-[10.5px] font-medium uppercase tracking-[0.22em] text-[color:rgb(5_5_5_/_66%)]" aria-label="Método de pesquisa">
