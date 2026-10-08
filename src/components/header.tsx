@@ -1,164 +1,183 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
 const NAV = [
   { href: "/#produto", label: "Produto" },
-  { href: "/memorando", label: "Memorando" },
+  { href: "/#research", label: "Research" },
+  { href: "/#tecnologia", label: "Tecnologia" },
   { href: "/about", label: "Sobre" },
-  { href: "/contact", label: "Contato" },
 ];
 
-const LOGO_SOURCES = [
-  "/logo_djangotech_horizontal_transparent.png",
-  "/logo_djangotech_horizontal.png",
-  "/logo_djangotech.png",
-  "/django-logo.svg",
-  "/django-logo.png",
-  "/logo-mark.svg",
-];
+const DOWNLOAD_HREF = "/#download";
 
 function MenuIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" {...props}>
-      <path d="M4 7h16" />
-      <path d="M4 12h16" />
-      <path d="M4 17h16" />
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true" {...props}>
+      <path d="M4 9h16" />
+      <path d="M4 15h16" />
     </svg>
   );
 }
 
 function XIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" {...props}>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true" {...props}>
       <path d="M6 6l12 12" />
       <path d="M18 6l-12 12" />
     </svg>
   );
 }
 
+function DownArrow() {
+  return (
+    <svg viewBox="0 0 16 16" className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-y-0.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M8 3v9M4 8.5 8 12l4-3.5" />
+    </svg>
+  );
+}
+
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const [logoIndex, setLogoIndex] = useState(0);
-  const logoSrc = LOGO_SOURCES[Math.min(logoIndex, LOGO_SOURCES.length - 1)];
-  const showWordmarkFallback = logoSrc === "/logo-mark.svg";
+  const [scrolled, setScrolled] = useState(false);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const firstLinkRef = useRef<HTMLAnchorElement>(null);
+
+  useEffect(() => {
+    function onScroll() {
+      setScrolled(window.scrollY > 8);
+    }
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     if (!open) return;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    firstLinkRef.current?.focus();
+
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setOpen(false);
+        toggleRef.current?.focus();
+      }
+    }
+    window.addEventListener("keydown", onKeyDown);
 
     return () => {
       document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
     };
   }, [open]);
 
-  useEffect(() => {
-    function onKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") setOpen(false);
-    }
-
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, []);
-
-  function handleLogoError() {
-    setLogoIndex((current) => Math.min(current + 1, LOGO_SOURCES.length - 1));
+  function closeMenu(returnFocus: boolean) {
+    setOpen(false);
+    if (returnFocus) toggleRef.current?.focus();
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[color:var(--color-border)] bg-[color:rgb(255_255_255_/_94%)] backdrop-blur">
-      <div className="mx-auto flex h-[4.75rem] max-w-screen-xl items-center justify-between gap-4 px-6">
-        <Link href="/" className="flex min-w-0 items-center gap-3">
-          <span
-            className={[
-              "relative shrink-0 overflow-hidden",
-              showWordmarkFallback
-                ? "h-10 w-10 rounded-xl border border-[color:var(--color-border)] bg-white p-1"
-                : "h-11 w-44 sm:h-12 sm:w-56",
-            ].join(" ")}
-          >
+    <>
+      <header
+        className={[
+          "sticky top-0 z-50 border-b backdrop-blur-xl transition-[background-color,border-color] duration-300",
+          scrolled || open
+            ? "border-[color:var(--color-border)] bg-[color:rgb(255_255_255_/_90%)]"
+            : "border-transparent bg-[color:rgb(247_247_244_/_70%)]",
+        ].join(" ")}
+      >
+        <a
+          href="#conteudo"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-[60] focus:rounded-lg focus:bg-white focus:px-3 focus:py-2 focus:text-sm"
+        >
+          Pular para o conteúdo
+        </a>
+
+        <div className="mx-auto flex h-16 max-w-screen-xl items-center justify-between gap-6 px-5 md:px-8 lg:h-[4.5rem]">
+          <Link href="/" aria-label="Django Technologies — início" className="relative block h-9 w-[9.5rem] shrink-0 lg:h-10 lg:w-[11rem]">
             <Image
-              src={logoSrc}
+              src="/logo_djangotech_horizontal_transparent.png"
               alt="Django Technologies"
               fill
               priority
-              sizes={showWordmarkFallback ? "40px" : "(max-width: 640px) 176px, 224px"}
-              className={["object-contain", showWordmarkFallback ? "p-0.5" : "object-left"].join(" ")}
-              onError={handleLogoError}
+              sizes="176px"
+              className="object-contain object-left"
             />
-          </span>
+          </Link>
 
-          {showWordmarkFallback ? (
-            <span className="min-w-0 leading-[1.05]">
-              <span className="block truncate text-sm font-semibold tracking-[0.02em] text-[var(--color-text)]">
-                Django
-              </span>
-              <span className="block truncate text-sm font-semibold tracking-[0.02em] text-[var(--color-muted)]">
-                Technologies
-              </span>
-            </span>
-          ) : null}
-        </Link>
+          <nav aria-label="Principal" className="hidden items-center gap-9 lg:flex">
+            {NAV.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="relative py-2 text-[14px] font-medium text-[color:rgb(5_5_5_/_72%)] transition-colors duration-200 after:absolute after:inset-x-0 after:bottom-0.5 after:h-px after:origin-left after:scale-x-0 after:bg-[var(--brand-green)] after:transition-transform after:duration-300 hover:text-[var(--brand-black)] hover:after:scale-x-100"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
 
-        <nav className="hidden items-center gap-8 text-sm font-medium md:flex">
-          {NAV.map((item) => (
+          <div className="flex items-center gap-2">
             <Link
-              key={item.href}
-              href={item.href}
-              className="text-[color:rgb(5_5_5_/_76%)] transition-colors duration-200 hover:text-[var(--brand-green-dark)] focus-visible:text-[var(--brand-green-dark)]"
+              href={DOWNLOAD_HREF}
+              className="group hidden h-10 items-center gap-2 whitespace-nowrap rounded-full bg-[var(--brand-black)] px-5 text-[14px] font-medium text-white transition-colors duration-200 hover:bg-[#1d201d] focus-visible:ring-4 focus-visible:ring-[color:var(--focus-ring)] sm:inline-flex"
             >
-              {item.label}
+              Baixar o app
+              <DownArrow />
             </Link>
-          ))}
-        </nav>
 
-        <button
-          type="button"
-          aria-label={open ? "Fechar menu" : "Abrir menu"}
-          aria-expanded={open}
-          aria-controls="mobile-navigation"
-          onClick={() => setOpen((value) => !value)}
-          className={[
-            "inline-flex h-11 w-11 items-center justify-center rounded-2xl text-[var(--color-text)] md:hidden",
-            "border border-[color:var(--color-border)] bg-white",
-            "transition-colors duration-200",
-            "hover:border-[color:var(--brand-green)] hover:bg-[color:rgb(81_214_59_/_8%)] hover:text-[var(--brand-green-dark)]",
-            "focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[color:var(--focus-ring)]",
-          ].join(" ")}
-        >
-          {open ? <XIcon className="h-5 w-5" /> : <MenuIcon className="h-5 w-5" />}
-        </button>
-      </div>
+            <button
+              ref={toggleRef}
+              type="button"
+              aria-label={open ? "Fechar menu" : "Abrir menu"}
+              aria-expanded={open}
+              aria-controls="mobile-navigation"
+              onClick={() => (open ? closeMenu(false) : setOpen(true))}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[color:rgb(5_5_5_/_10%)] bg-white text-[var(--brand-black)] transition-colors duration-200 hover:border-[color:rgb(5_5_5_/_24%)] focus-visible:ring-4 focus-visible:ring-[color:var(--focus-ring)] lg:hidden"
+            >
+              {open ? <XIcon className="h-5 w-5" /> : <MenuIcon className="h-5 w-5" />}
+            </button>
+          </div>
+        </div>
+      </header>
 
+      {/* Fora do <header>: o backdrop-filter do header faria os elementos fixed se posicionarem nele. */}
       {open ? (
-        <div className="md:hidden">
+        <div className="lg:hidden">
           <div
-            className="fixed inset-0 bg-black/20"
-            onClick={() => setOpen(false)}
+            className="fixed inset-0 z-40 bg-[color:rgb(5_5_5_/_45%)] backdrop-blur-[2px]"
+            onClick={() => closeMenu(true)}
             aria-hidden="true"
           />
-
-          <div className="fixed left-0 right-0 top-[4.75rem] border-b border-[color:var(--color-border)] bg-white shadow-[0_24px_60px_rgba(5,5,5,0.08)]">
-            <div className="mx-auto max-w-screen-xl px-6 py-5">
-              <nav id="mobile-navigation" className="flex flex-col gap-2">
-                {NAV.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setOpen(false)}
-                    className="rounded-xl px-3 py-2 text-base text-[color:rgb(5_5_5_/_84%)] transition-colors duration-200 hover:bg-[color:rgb(81_214_59_/_8%)] hover:text-[var(--brand-green-dark)] focus-visible:text-[var(--brand-green-dark)]"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </nav>
-            </div>
+          <div className="fixed inset-x-0 top-16 z-[45] max-h-[calc(100dvh-4rem)] overflow-y-auto border-b border-[color:var(--color-border)] bg-white shadow-[0_24px_60px_rgba(5,5,5,0.16)]">
+            <nav id="mobile-navigation" aria-label="Menu" className="mx-auto flex max-w-screen-xl flex-col px-5 pb-6 pt-2 md:px-8">
+              {NAV.map((item, index) => (
+                <Link
+                  key={item.href}
+                  ref={index === 0 ? firstLinkRef : undefined}
+                  href={item.href}
+                  onClick={() => closeMenu(false)}
+                  className="flex items-center justify-between border-b border-[color:var(--color-border)] py-4 font-display text-xl font-medium tracking-[-0.02em] text-[var(--brand-black)]"
+                >
+                  {item.label}
+                  <span className="text-[color:rgb(5_5_5_/_30%)]" aria-hidden="true">→</span>
+                </Link>
+              ))}
+              <Link
+                href={DOWNLOAD_HREF}
+                onClick={() => closeMenu(false)}
+                className="mt-5 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[var(--brand-black)] text-[15px] font-medium text-white"
+              >
+                Baixar o app
+                <DownArrow />
+              </Link>
+            </nav>
           </div>
         </div>
       ) : null}
-    </header>
+    </>
   );
 }

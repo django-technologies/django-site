@@ -3,8 +3,8 @@ import Footer from '../../components/footer';
 import ContactForm from './ContactForm';
 
 export const metadata = {
-  title: 'Contato — Django Technologies',
-  description: 'Entre na lista de acesso ao produto ou fale com a Django Technologies.',
+  title: 'Contato',
+  description: 'Fale com a Django Technologies sobre o Django AI, parcerias e conversas institucionais.',
 };
 
 export default function Contact() {
@@ -25,8 +25,8 @@ export default function Contact() {
 
               <h1 className="mt-8 text-4xl font-medium tracking-[-0.04em] md:text-5xl">Contato</h1>
               <p className="mt-6 max-w-[32rem] text-[17px] leading-8 text-[color:rgb(5_5_5_/_70%)]">
-                Entre na lista de acesso ao produto digital ou envie uma mensagem institucional para a equipe da
-                Django Technologies.
+                Dúvidas sobre o Django AI, parcerias, mídia ou conversas institucionais: envie uma mensagem para a
+                equipe da Django Technologies.
               </p>
 
               <div className="mt-8 grid gap-5 rounded-[28px] border border-[color:var(--color-border)] bg-white p-6 shadow-[0_14px_34px_rgba(17,20,24,0.05)] lg:p-7">
@@ -48,7 +48,7 @@ export default function Contact() {
                 <div className="border-t border-[color:var(--color-border)] pt-4 text-sm text-[var(--color-muted)]">
                   <p className="font-medium text-[var(--color-text)]">Assuntos comuns</p>
                   <ul className="mt-3 space-y-2">
-                    <li>• Lista de acesso ao produto</li>
+                    <li>• Dúvidas sobre o Django AI</li>
                     <li>• Parcerias, mídia e conversas institucionais</li>
                     <li>• Demonstrações e interesse comercial</li>
                     <li>• Questões gerais sobre a Django Technologies</li>

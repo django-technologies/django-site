@@ -3,7 +3,7 @@ import Footer from "../../components/footer";
 import ReportsClient, { ResearchItem } from "./ReportsClient";
 
 export const metadata = {
-  title: "Arquivo de relatórios — Django Technologies",
+  title: "Arquivo de relatórios",
   description: "Arquivo institucional de relatórios e materiais históricos de caráter exclusivamente informativo.",
   robots: { index: false, follow: false },
 };

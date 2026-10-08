@@ -20,6 +20,16 @@
   --color-accent: var(--brand-green);
   --focus-ring: rgba(81, 214, 59, 0.3);
 
+  /* Superfícies do redesign product-first */
+  --color-paper: #f4f4f1;
+  --color-ink-soft: rgba(5, 5, 5, 0.66);
+  --color-stage: #f1f1ee;
+
+  /* Paleta real do app Django AI (amostrada das telas) */
+  --app-cream: #fcfcf6;
+  --app-green: #649428;
+  --app-green-text: #3f7a1a;
+
   --radius: 16px;
   --space-1: 8px; --space-2: 16px; --space-3: 24px;
   --space-4: 32px; --space-5: 40px; --space-6: 64px;

@@ -1,19 +1,31 @@
 import type { Metadata } from 'next';
+import { Inter, Inter_Tight, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import './tokens.css';
 
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
+const interTight = Inter_Tight({ subsets: ['latin'], variable: '--font-inter-tight', display: 'swap' });
+const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jetbrains', display: 'swap' });
+
+const DESCRIPTION =
+  'Django AI é o app da Django Technologies para acompanhar ações brasileiras com rankings quantitativos, notícias com contexto e análises por ativo.';
+
 export const metadata: Metadata = {
-  title: { default: 'Django Technologies — inteligência quantitativa', template: '%s — Django Technologies' },
-  description:
-    'Plataforma de inteligência quantitativa com dados, indicadores, métricas de risco e simulações históricas.',
+  title: { default: 'Django Technologies | Django AI', template: '%s — Django Technologies' },
+  description: DESCRIPTION,
   metadataBase: new URL('https://www.djangotechnologies.com'),
   openGraph: {
-    title: 'Django Technologies',
-    description: 'Dados de mercado, indicadores quantitativos e painéis analíticos para acompanhar mercados com método.',
+    title: 'Django AI — by Django Technologies',
+    description: DESCRIPTION,
     url: 'https://www.djangotechnologies.com',
     siteName: 'Django Technologies',
-    images: ['/og.png'],
+    locale: 'pt_BR',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Django AI — by Django Technologies',
+    description: DESCRIPTION,
   },
   icons: {
     icon: [
@@ -28,7 +40,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" className={`${inter.variable} ${interTight.variable} ${jetbrainsMono.variable}`}>
       <body>{children}</body>
     </html>
   );

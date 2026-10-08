@@ -4,8 +4,8 @@ import Image from 'next/image';
 import FormulaWall from '../../components/formula-wall';
 
 export const metadata = {
-  title: 'Sobre — Django Technologies',
-  description: 'Tecnologia quantitativa aplicada a mercados financeiros, dados e infraestrutura analítica.',
+  title: 'Sobre',
+  description: 'Django Technologies: software, dados e pesquisa quantitativa. Criadores do Django AI.',
 };
 
 export default function About() {
@@ -30,19 +30,17 @@ export default function About() {
 
               <div className="mt-6 max-w-[64ch] space-y-5 text-[17px] leading-8 text-[color:rgb(5_5_5_/_72%)]">
                 <p>
-                  A Django Technologies nasceu para construir tecnologia quantitativa aplicada a mercados financeiros.
-                  Hoje, desenvolvemos uma plataforma de inteligência quantitativa com dados, indicadores, rankings
-                  estatísticos, métricas de risco, simulações e carteiras-modelo hipotéticas.
+                  A Django Technologies é uma empresa de tecnologia financeira. Combinamos software, dados e pesquisa
+                  quantitativa para construir infraestrutura de inteligência de mercado.
                 </p>
                 <p>
-                  Nossa visão de longo prazo é unir pesquisa, engenharia e disciplina sistemática para criar uma nova
-                  infraestrutura de decisão em mercados. O produto atual é informacional, não personalizado e orientado
-                  por metodologia quantitativa.
+                  Nosso principal produto público é o Django AI, um app para acompanhar ações brasileiras com Top Ações,
+                  ranking quantitativo, notícias com contexto e análises por ativo. O conteúdo é informacional, não
+                  personalizado e orientado por metodologia quantitativa.
                 </p>
                 <p>
                   Seguimos princípios claros: qualidade dos dados, hipóteses testáveis, validação estatística, risco
-                  explícito, governança e transparência metodológica. Essa cultura quantitativa guia tanto a plataforma
-                  atual quanto a ambição institucional de longo prazo da Django.
+                  explícito e transparência metodológica. É essa cultura de pesquisa que sustenta o produto.
                 </p>
               </div>
             </div>
