@@ -1,6 +1,14 @@
 // app/api/contact/route.ts
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import {
+  ContactRateLimiter,
+  LIMITS,
+  buildContactEmail,
+  clientIp,
+  isSameOrigin,
+  parseContact,
+} from '@/lib/contact';
 
 // Garante que estamos no runtime Node.js (necessário para Nodemailer)
 export const runtime = 'nodejs';
@@ -22,22 +30,57 @@ const transporter =
       })
     : null;
 
-export async function POST(request: Request) {
-  try {
-    const { name, email, message } = await request.json();
+// Limite por IP (melhor esforço, por instância): evita uso do formulário para spam.
+const limiter = new ContactRateLimiter();
 
-    if (!name || !email || !message) {
+const INVALID = { error: 'Verifique os campos e tente novamente.' };
+
+export async function POST(request: Request) {
+  // Logs nunca contêm nome, e-mail ou mensagem (dados pessoais).
+  try {
+    if (!isSameOrigin(request.headers.get('origin'), request.headers.get('host'))) {
+      return NextResponse.json({ error: 'Origem não permitida.' }, { status: 403 });
+    }
+
+    const declaredLength = Number(request.headers.get('content-length') ?? '0');
+    if (declaredLength > LIMITS.bodyBytes) {
+      return NextResponse.json(INVALID, { status: 413 });
+    }
+
+    const rate = limiter.check(clientIp(request.headers));
+    if (!rate.allowed) {
       return NextResponse.json(
-        { error: 'Campos obrigatórios não informados.' },
-        { status: 400 }
+        { error: 'Muitas mensagens em pouco tempo. Tente novamente mais tarde.' },
+        { status: 429, headers: { 'Retry-After': String(rate.retryAfterSeconds) } },
       );
     }
 
+    const raw = await request.text();
+    if (raw.length > LIMITS.bodyBytes) {
+      return NextResponse.json(INVALID, { status: 413 });
+    }
+
+    let body: unknown;
+    try {
+      body = JSON.parse(raw);
+    } catch {
+      return NextResponse.json(INVALID, { status: 400 });
+    }
+
+    const parsed = parseContact(body);
+    if (!parsed.ok) {
+      if (parsed.reason === 'spam') {
+        console.warn('[contact] dropped: honeypot');
+        return NextResponse.json({ ok: true });
+      }
+      return NextResponse.json(INVALID, { status: 400 });
+    }
+
     if (!user || !pass || !toEnv || !transporter) {
-      console.error('Configuração de e-mail ausente. Verifique .env.');
+      console.error('[contact] e-mail transport not configured');
       return NextResponse.json(
         { error: 'Configuração de e-mail não encontrada no servidor.' },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -47,41 +90,27 @@ export async function POST(request: Request) {
       .map((addr) => addr.trim())
       .filter(Boolean);
 
-    const subject = `Contato pelo site - ${name}`;
-    const text = `
-Nome: ${name}
-E-mail: ${email}
-
-Mensagem:
-${message}
-    `.trim();
-
-    const html = `
-      <div style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; color: #111418;">
-        <p><strong>Nome:</strong> ${name}</p>
-        <p><strong>E-mail:</strong> ${email}</p>
-        <p><strong>Mensagem:</strong></p>
-        <p style="white-space: pre-line;">${message}</p>
-      </div>
-    `;
+    const { subject, text, html } = buildContactEmail(parsed.value);
 
     await transporter.sendMail({
       from: `"Django Technologies" <${user}>`,
-      replyTo: email,
+      replyTo: parsed.value.email,
       to,
       subject,
       text,
       html,
     });
 
-    console.log('Nova mensagem de contato:', { name, email, message });
-
+    console.info('[contact] message sent');
     return NextResponse.json({ ok: true });
   } catch (err) {
-    console.error('Erro ao processar contato:', err);
+    console.error('[contact] failed to process request', {
+      error: err instanceof Error ? err.name : 'unknown',
+      code: (err as { code?: unknown } | null)?.code,
+    });
     return NextResponse.json(
       { error: 'Erro ao processar a requisição.' },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

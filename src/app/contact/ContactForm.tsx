@@ -18,6 +18,7 @@ export default function ContactForm() {
       name: formData.get('name'),
       email: formData.get('email'),
       message: formData.get('message'),
+      website: formData.get('website'),
     };
 
     try {
@@ -28,7 +29,10 @@ export default function ContactForm() {
       });
 
       if (!res.ok) {
-        throw new Error('Erro ao enviar mensagem.');
+        const data = await res.json().catch(() => null);
+        throw new Error(
+          typeof data?.error === 'string' ? data.error : 'Erro ao enviar mensagem.',
+        );
       }
 
       setStatus('success');
@@ -51,11 +55,21 @@ export default function ContactForm() {
 
       <h2 className="text-lg font-medium">Envie uma mensagem</h2>
 
+      {/* Campo-armadilha anti-spam: invisível para pessoas, preenchido por robôs. */}
+      <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
+        <label>
+          Não preencha este campo
+          <input type="text" name="website" tabIndex={-1} autoComplete="off" defaultValue="" />
+        </label>
+      </div>
+
       <label className="grid gap-2 text-sm">
         <span className="text-[color:rgb(5_5_5_/_78%)]">Nome</span>
         <input
           name="name"
           required
+          maxLength={120}
+          autoComplete="name"
           className="rounded-xl border bg-[color:rgb(255_255_255_/_96%)] px-3 py-2.5 text-base outline-none transition-colors duration-200 border-[color:rgb(42_47_54_/_18%)] hover:border-[color:rgb(81_214_59_/_24%)] focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring)] focus-visible:border-[var(--brand-green)]"
         />
       </label>
@@ -66,6 +80,8 @@ export default function ContactForm() {
           type="email"
           name="email"
           required
+          maxLength={254}
+          autoComplete="email"
           className="rounded-xl border bg-[color:rgb(255_255_255_/_96%)] px-3 py-2.5 text-base outline-none transition-colors duration-200 border-[color:rgb(42_47_54_/_18%)] hover:border-[color:rgb(81_214_59_/_24%)] focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring)] focus-visible:border-[var(--brand-green)]"
         />
       </label>
@@ -76,9 +92,24 @@ export default function ContactForm() {
           name="message"
           rows={6}
           required
+          maxLength={5000}
           className="resize-y rounded-xl border bg-[color:rgb(255_255_255_/_96%)] px-3 py-2.5 text-base outline-none transition-colors duration-200 border-[color:rgb(42_47_54_/_18%)] hover:border-[color:rgb(81_214_59_/_24%)] focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring)] focus-visible:border-[var(--brand-green)]"
         />
       </label>
+
+      <p className="text-xs leading-5 text-[var(--color-muted)]">
+        Usamos seu nome, e-mail e mensagem apenas para responder a este contato, sem uso para marketing.
+        Saiba mais na nossa{' '}
+        <a
+          className="underline decoration-[color:rgb(81_214_59_/_32%)] underline-offset-4 transition-colors duration-200 hover:text-[var(--brand-green-dark)] hover:decoration-[var(--brand-green)]"
+          href="https://go.djangotechnologies.com/privacidade"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Política de Privacidade
+        </a>
+        .
+      </p>
 
       <button
         type="submit"
